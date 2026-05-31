@@ -30,6 +30,7 @@ export default function Header() {
   const navLinks = [
     { name: "Início", path: "/" },
     { name: "Projetos", path: "/projects" },
+    { name: "Market", path: "/market" },
     { name: "Contato", path: "/contact" }
   ]
 
