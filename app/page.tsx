@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import AnimatedSection from "@/components/ui/animated-section"
 import VinylRecord from "@/components/ui/VinylRecord"
 import { projects } from "@/lib/projects"
-import { siteConfig } from "@/config/site"
+import { siteConfig, getWhatsAppUrl } from "@/config/site"
 
 // ── Kinetic Typography Component ──
 function KineticTitle() {
@@ -136,8 +136,12 @@ export default function Page() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="space-y-1"
               >
                 <KineticTitle />
+                <div className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground/60 pl-2">
+                  aka Ryan Jesus
+                </div>
               </motion.div>
 
               <motion.p
@@ -165,6 +169,40 @@ export default function Page() {
                     {siteConfig.hero.ctaSecondary}
                   </Button>
                 </Link>
+              </motion.div>
+
+              {/* Highlighted Social Networks */}
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-6 border-t border-border/40 max-w-md"
+              >
+                <span className="font-mono text-[9px] uppercase tracking-widest text-muted-foreground">Redes:</span>
+                <a
+                  href={siteConfig.social.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 group"
+                >
+                  GitHub <span className="text-[9px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                </a>
+                <a
+                  href={siteConfig.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 group"
+                >
+                  LinkedIn <span className="text-[9px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                </a>
+                <a
+                  href={getWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 group"
+                >
+                  WhatsApp <span className="text-[9px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
+                </a>
               </motion.div>
             </div>
 

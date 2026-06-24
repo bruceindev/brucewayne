@@ -43,12 +43,17 @@ export default function Header() {
         <div className="container mx-auto flex items-center justify-between px-6">
           {/* Logo */}
           <div className="flex items-center gap-4">
-            <Link
-              href="/"
-              className="font-display text-2xl font-bold tracking-[-0.04em] text-foreground transition-colors hover:text-primary italic"
-            >
-              BRUCE<span className="text-primary not-italic">.</span>
-            </Link>
+            <div className="flex flex-col justify-start">
+              <Link
+                href="/"
+                className="font-display text-2xl font-bold tracking-[-0.04em] text-foreground transition-colors hover:text-primary italic leading-none"
+              >
+                BRUCE<span className="text-primary not-italic">.</span>
+              </Link>
+              <span className="font-mono text-[8px] text-muted-foreground uppercase tracking-widest leading-none mt-1">
+                Ryan Jesus
+              </span>
+            </div>
 
             {/* Availability indicator */}
             {siteConfig.hero.available && (
@@ -78,6 +83,18 @@ export default function Header() {
                 }`} />
               </Link>
             ))}
+
+            {/* Download CV */}
+            <a
+              href="/Ryan_Jesus_Curriculo.pdf"
+              download="Ryan_Jesus_Curriculo.pdf"
+              className="group relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
+              title="Baixar Currículo (PDF)"
+            >
+              <span>Currículo</span>
+              <span className="text-[10px] text-primary">↓</span>
+              <span className="absolute -bottom-1 left-0 h-px bg-primary w-0 group-hover:w-full transition-all duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]" />
+            </a>
           </nav>
 
           {/* CTA & Mobile Toggle */}

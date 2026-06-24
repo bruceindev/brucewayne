@@ -35,12 +35,17 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:gap-12">
           {/* Logo & Value Prop */}
           <div className="md:col-span-2 space-y-4">
-            <Link
-              href="/"
-              className="font-display text-2xl font-bold tracking-[-0.04em] text-foreground transition-colors hover:text-primary italic"
-            >
-              BRUCE<span className="text-primary not-italic">.</span>
-            </Link>
+            <div className="flex flex-col justify-start">
+              <Link
+                href="/"
+                className="font-display text-2xl font-bold tracking-[-0.04em] text-foreground transition-colors hover:text-primary italic leading-none"
+              >
+                BRUCE<span className="text-primary not-italic">.</span>
+              </Link>
+              <span className="font-mono text-[8px] text-muted-foreground uppercase tracking-widest leading-none mt-1">
+                Ryan Jesus
+              </span>
+            </div>
             <p className="max-w-xs text-muted-foreground leading-relaxed text-sm">
               Sistemas de alta performance construídos com gosto, estética e cultura analógica. Código que dura.
             </p>
@@ -81,18 +86,22 @@ export default function Footer() {
 
           {/* Socials */}
           <div className="space-y-4">
-            <h4 className="font-mono text-xs text-muted-foreground uppercase tracking-[0.12em]">Canais</h4>
-            <div className="flex flex-wrap gap-3">
+            <h4 className="font-mono text-xs text-muted-foreground uppercase tracking-[0.12em]">Canais / Redes</h4>
+            <div className="flex flex-col gap-2">
               {socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded border border-border bg-card/30 text-muted-foreground transition-all hover:border-primary/50 hover:text-foreground"
+                  className="flex items-center justify-between p-2.5 border border-border bg-card/10 hover:bg-primary/5 hover:border-primary/50 text-muted-foreground hover:text-foreground transition-all duration-300 font-mono text-xs group"
                   title={social.name}
                 >
-                  {social.icon}
+                  <span className="flex items-center gap-2">
+                    {social.icon}
+                    <span>{social.name}</span>
+                  </span>
+                  <span className="text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
                 </a>
               ))}
             </div>

@@ -52,6 +52,23 @@ export default function MobileMenu({
                 </Link>
               </motion.div>
             ))}
+
+            {/* Baixar CV no Menu Mobile */}
+            <motion.div
+              initial={{ opacity: 0, x: -16 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.05 * links.length, duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <a
+                href="/Ryan_Jesus_Curriculo.pdf"
+                download="Ryan_Jesus_Curriculo.pdf"
+                onClick={onClose}
+                className="block font-display text-3xl italic font-light tracking-tight py-3 border-b border-border text-muted-foreground hover:text-foreground transition-colors flex items-center justify-between"
+              >
+                <span>Currículo (PDF)</span>
+                <span className="text-primary text-xl">↓</span>
+              </a>
+            </motion.div>
           </div>
 
           {/* Footer of Mobile Drawer */}
