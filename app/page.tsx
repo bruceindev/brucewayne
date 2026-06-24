@@ -140,7 +140,7 @@ export default function Page() {
               >
                 <KineticTitle />
                 <div className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground/60 pl-2">
-                  aka Ryan Jesus
+                  Ryan Jesus
                 </div>
               </motion.div>
 

@@ -19,7 +19,9 @@ const projectOptions = [
 ]
 
 const contactSchema = z.object({
+  nome: z.string().min(2, { message: "Por favor, digite seu nome." }),
   email: z.string().email({ message: "E-mail inválido." }),
+  whatsapp: z.string().optional(),
   orcamento: z.string().min(1, { message: "Selecione uma opção." }),
   detalhes: z.string().min(10, { message: "Descreva seu projeto com pelo menos 10 caracteres." })
 })
@@ -38,7 +40,9 @@ export default function ContactClient() {
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
+      nome: "",
       email: "",
+      whatsapp: "",
       orcamento: "",
       detalhes: ""
     }
@@ -52,9 +56,9 @@ export default function ContactClient() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nome: "—",
+          nome: data.nome,
           email: data.email,
-          empresa: null,
+          whatsapp: data.whatsapp || null,
           orcamento: data.orcamento,
           detalhes: data.detalhes
         })
@@ -85,7 +89,7 @@ export default function ContactClient() {
             O que você quer construir?
           </h1>
           <p className="text-muted-foreground text-sm md:text-base max-w-lg leading-relaxed">
-            Uma pergunta. Seus dados. Um botão. Sem burocracia.
+            Uma proposta. Seus dados básicos. Sem burocracia.
           </p>
         </AnimatedSection>
 
@@ -120,7 +124,7 @@ export default function ContactClient() {
           </a>
         </AnimatedSection>
 
-        {/* Form — 3 fields only */}
+        {/* Form — Essential fields only */}
         <AnimatedSection delay={0.2}>
           <div className="border border-border bg-card p-8 md:p-10 space-y-8">
             {success ? (
@@ -133,7 +137,7 @@ export default function ContactClient() {
                   <CheckCircle2 className="h-8 w-8" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-lg font-display italic text-foreground">Recebi. Te respondo em até {siteConfig.metrics.responseTime}.</h3>
+                  <h3 className="text-lg font-display italic text-foreground">Recebi sua proposta. Te respondo em até {siteConfig.metrics.responseTime}.</h3>
                 </div>
                 <Button
                   onClick={() => setSuccess(false)}
@@ -145,20 +149,54 @@ export default function ContactClient() {
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                {/* Email */}
+                {/* Nome */}
                 <div className="space-y-2">
                   <label className="text-[10px] font-mono text-muted-foreground uppercase tracking-[0.12em]">
-                    Seu e-mail *
+                    Seu nome *
                   </label>
                   <input
-                    {...register("email")}
-                    type="email"
-                    placeholder="seu@email.com"
+                    {...register("nome")}
+                    type="text"
+                    placeholder="Qual é seu nome?"
                     className={inputClass}
                   />
-                  {errors.email && (
-                    <p className="text-[10px] text-destructive font-mono">{errors.email.message}</p>
+                  {errors.nome && (
+                    <p className="text-[10px] text-destructive font-mono">{errors.nome.message}</p>
                   )}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Email */}
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-mono text-muted-foreground uppercase tracking-[0.12em]">
+                      Seu e-mail *
+                    </label>
+                    <input
+                      {...register("email")}
+                      type="email"
+                      placeholder="seu@email.com"
+                      className={inputClass}
+                    />
+                    {errors.email && (
+                      <p className="text-[10px] text-destructive font-mono">{errors.email.message}</p>
+                    )}
+                  </div>
+
+                  {/* WhatsApp */}
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-mono text-muted-foreground uppercase tracking-[0.12em]">
+                      Seu WhatsApp / Telefone (Opcional)
+                    </label>
+                    <input
+                      {...register("whatsapp")}
+                      type="text"
+                      placeholder="(11) 99999-9999"
+                      className={inputClass}
+                    />
+                    {errors.whatsapp && (
+                      <p className="text-[10px] text-destructive font-mono">{errors.whatsapp.message}</p>
+                    )}
+                  </div>
                 </div>
 
                 {/* Project type / Budget */}
@@ -172,7 +210,7 @@ export default function ContactClient() {
                       className={`${inputClass} appearance-none cursor-pointer pr-10`}
                     >
                       <option value="" className="bg-card text-muted-foreground">
-                        Selecione
+                        Selecione o tipo de projeto
                       </option>
                       {projectOptions.map((opt) => (
                         <option key={opt.value} value={opt.value} className="bg-card text-foreground">
@@ -197,7 +235,7 @@ export default function ContactClient() {
                   <textarea
                     {...register("detalhes")}
                     rows={5}
-                    placeholder="Descreva o problema que precisa resolver, o produto que quer criar ou a ideia que quer validar..."
+                    placeholder="Descreva brevemente o problema, produto ou escopo do sistema..."
                     className={`${inputClass} resize-none`}
                   />
                   {errors.detalhes && (
@@ -221,18 +259,18 @@ export default function ContactClient() {
                   {loading ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Enviando...
+                      Enviando proposta...
                     </>
                   ) : (
                     <>
-                      Enviar mensagem
+                      Enviar proposta
                       <ArrowRight className="ml-1.5 h-4 w-4" />
                     </>
                   )}
                 </Button>
 
                 <p className="text-center font-mono text-[10px] text-muted-foreground">
-                  Tempo médio de resposta: {siteConfig.metrics.responseTime}.
+                  Tempo de resposta de até {siteConfig.metrics.responseTime}.
                 </p>
               </form>
             )}
