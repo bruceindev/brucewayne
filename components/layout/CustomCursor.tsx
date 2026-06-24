@@ -71,7 +71,7 @@ export default function CustomCursor() {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 pointer-events-none z-[99999] mix-blend-difference"
+      className="fixed top-0 left-0 pointer-events-none z-[99999] mix-blend-difference hidden md:block"
       style={{
         opacity: isVisible ? 1 : 0,
         transition: "width 0.25s cubic-bezier(0.25,0.46,0.45,0.94), height 0.25s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.2s, background-color 0.25s",

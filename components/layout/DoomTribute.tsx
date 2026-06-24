@@ -233,7 +233,7 @@ export default function DoomTribute() {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-              className="absolute w-[360px] h-[360px] border border-border/10 rounded-full opacity-20 pointer-events-none flex items-center justify-center"
+              className="absolute w-[260px] h-[260px] md:w-[360px] md:h-[360px] border border-border/10 rounded-full opacity-20 pointer-events-none flex items-center justify-center"
               style={{
                 backgroundImage: "radial-gradient(circle, transparent 30%, rgba(201, 168, 76, 0.05) 50%, transparent 70%)"
               }}
@@ -252,7 +252,7 @@ export default function DoomTribute() {
                 rotateX: -mousePos.y * 15,
                 transformStyle: "preserve-3d",
               }}
-              className="relative z-10 w-60 h-60 flex items-center justify-center cursor-pointer"
+              className="relative z-10 w-44 h-44 md:w-60 md:h-60 flex items-center justify-center cursor-pointer"
               title="A máscara do Vilão"
             >
               <svg
