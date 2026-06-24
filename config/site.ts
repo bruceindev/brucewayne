@@ -1,15 +1,14 @@
-
 export const siteConfig = {
   // --- Informações Pessoais ---
-  name: "Ryan Wayne",
-  role: "Desenvolvedor Fullstack & Engenheiro de Produto",
+  name: "Bruce",
+  role: "Full Stack. Full Culture.",
   location: "São Paulo, SP",
 
   // --- Copy Principal ---
   hero: {
-    headline: "Sistemas fullstack com IA integrada. Entregues em semanas, sem surpresas.",
+    headline: "BRUCE.",
     subheadline:
-      "Construo MVPs, sistemas e landing pages para negócios que precisam de velocidade e resultado. Escopo fixo. Prazo fixo. Suporte incluso.",
+      "Construo sistemas que não quebram às 2h da manhã. Desenvolvimento full-stack com gosto, estética e som de vinil.",
     ctaPrimary: "Falar sobre seu projeto",
     ctaSecondary: "Ver projetos",
     availabilityLabel: "Disponível para projetos",
@@ -20,8 +19,8 @@ export const siteConfig = {
   contact: {
     email: "euryanjesus@gmail.com",
     whatsapp: "5511934182993",
-    whatsappMessage: "Olá, vim pelo seu portfólio e quero conversar sobre um projeto.",
-    responseTime: "Respondo em até 2h em horário comercial",
+    whatsappMessage: "Olá Bruce, vim pelo seu portfólio e quero conversar sobre um projeto.",
+    responseTime: "Respondo em até 24h",
   },
 
   // --- Redes Sociais ---
@@ -32,9 +31,9 @@ export const siteConfig = {
 
   // --- SEO & Metadata ---
   seo: {
-    title: "Ryan Jesus — Desenvolvedor Fullstack & IA",
+    title: "BRUCE. — Full Stack Developer & Creative Engineer",
     description:
-      "Sistemas fullstack com IA integrada, MVPs e landing pages. Entrega em semanas com escopo fixo, suporte incluso e documentação em português.",
+      "The other side of full stack. Sistemas de alta performance construídos com gosto, estética e cultura analógica.",
     url: "https://ryanjesus.dev", // atualize quando tiver domínio
     ogImage: "/og-image.png",
   },
@@ -68,7 +67,7 @@ export const siteConfig = {
     projectsDelivered: "+10",
     onTimeRate: "100%",
     supportDays: "30 dias",
-    responseTime: "2h",
+    responseTime: "24h",
   },
 } as const;
 

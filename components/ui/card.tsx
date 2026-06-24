@@ -17,9 +17,9 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-xl border bg-secondary/30 backdrop-blur-sm text-card-foreground shadow-sm transition-all duration-300",
-        glow ? "neon-border neon-border-hover" : "border-white/5",
-        interactive && !glow && "hover:border-white/12 hover:bg-secondary/50 hover:-translate-y-0.5",
+        "border bg-card text-card-foreground shadow-sm transition-all duration-300",
+        glow ? "border-primary/20" : "border-border",
+        interactive && !glow && "hover:border-primary/40 hover:bg-card/80 hover:-translate-y-0.5",
         className
       )}
       {...props}
@@ -46,7 +46,7 @@ export function CardTitle({
   return (
     <h3
       className={cn(
-        "font-display text-lg font-semibold leading-tight tracking-tight text-white",
+        "font-display text-lg font-medium leading-tight tracking-tight text-foreground italic",
         className
       )}
       {...props}

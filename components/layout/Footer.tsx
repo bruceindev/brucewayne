@@ -30,62 +30,58 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="w-full border-t border-white/5 bg-[#080809] py-12 text-sm">
+    <footer className="w-full border-t border-border bg-background py-12 text-sm">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:gap-12">
           {/* Logo & Value Prop */}
           <div className="md:col-span-2 space-y-4">
             <Link
               href="/"
-              className="font-display text-xl font-bold tracking-tight text-white transition-colors hover:text-neon-lime"
+              className="font-display text-2xl font-bold tracking-[-0.04em] text-foreground transition-colors hover:text-primary italic"
             >
-              {siteConfig.name
-                .split(" ")
-                .map((n) => n[0].toLowerCase())
-                .join("")}
-              <span className="text-neon-lime">.</span>dev
+              BRUCE<span className="text-primary not-italic">.</span>
             </Link>
-            <p className="max-w-xs text-muted-foreground leading-relaxed">
-              Sistemas fullstack de alta qualidade com IA integrada. Entregas rápidas em semanas, escopo fixo e sem surpresas.
+            <p className="max-w-xs text-muted-foreground leading-relaxed text-sm">
+              Sistemas de alta performance construídos com gosto, estética e cultura analógica. Código que dura.
             </p>
-            <div className={`flex items-center gap-2.5 text-xs font-mono ${siteConfig.hero.available ? "text-neon-lime" : "text-muted-foreground"}`}>
-              <span className={`h-2 w-2 rounded-full ${siteConfig.hero.available ? "bg-neon-lime pulse-neon-dot" : "bg-muted-foreground"}`} />
-              <span>
-                {siteConfig.hero.available ? siteConfig.hero.availabilityLabel : "Indisponível no momento"} • SLA de Resposta: {siteConfig.contact.responseTime}
-              </span>
+            <div className="flex items-center gap-2.5 text-xs font-mono">
+              {siteConfig.hero.available ? (
+                <>
+                  <span className="h-[6px] w-[6px] rounded-full bg-destructive pulse-red-dot" />
+                  <span className="text-foreground">{siteConfig.hero.availabilityLabel}</span>
+                </>
+              ) : (
+                <span className="text-muted-foreground">Indisponível no momento</span>
+              )}
+              <span className="text-muted-foreground">• {siteConfig.contact.responseTime}</span>
             </div>
           </div>
 
           {/* Nav Links */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-white tracking-wide uppercase text-xs">Navegação</h4>
+            <h4 className="font-mono text-xs text-muted-foreground uppercase tracking-[0.12em]">Navegação</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li>
-                <Link href="/" className="hover:text-white transition-colors">
+                <Link href="/" className="hover:text-foreground transition-colors">
                   Início
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="hover:text-white transition-colors">
+                <Link href="/projects" className="hover:text-foreground transition-colors">
                   Projetos
                 </Link>
               </li>
               <li>
-                <Link href="/market" className="hover:text-white transition-colors">
-                  Market
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
+                <Link href="/contact" className="hover:text-foreground transition-colors">
                   Contato
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Socials & Contact */}
+          {/* Socials */}
           <div className="space-y-4">
-            <h4 className="font-semibold text-white tracking-wide uppercase text-xs">Canais</h4>
+            <h4 className="font-mono text-xs text-muted-foreground uppercase tracking-[0.12em]">Canais</h4>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map((social) => (
                 <a
@@ -93,33 +89,27 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/5 bg-secondary/10 text-muted-foreground transition-all hover:border-white/15 hover:bg-secondary/30 hover:text-white"
+                  className="flex h-9 w-9 items-center justify-center rounded border border-border bg-card/30 text-muted-foreground transition-all hover:border-primary/50 hover:text-foreground"
                   title={social.name}
                 >
                   {social.icon}
                 </a>
               ))}
             </div>
-            <div className="text-xs text-muted-foreground">
-              <p>Atendimento comercial:</p>
-              <p className="text-white font-mono mt-0.5">Seg — Sex, 09:00 - 18:00</p>
+            <div className="text-xs text-muted-foreground font-mono">
+              <p>Seg — Sex, 09:00 - 18:00</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 w-full h-px bg-white/5" />
+        <div className="mt-12 w-full h-px bg-border" />
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row text-xs text-muted-foreground">
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row text-xs text-muted-foreground font-mono">
           <p>
-            © {currentYear}{" "}
-            {siteConfig.name
-              .split(" ")
-              .map((n) => n[0].toLowerCase())
-              .join("")}
-            .dev. Todos os direitos reservados.
+            © {currentYear} BRUCE. Todos os direitos reservados.
           </p>
           <div className="flex items-center gap-6">
-            <span>Escopo Fixo. Prazo Fixo. Suporte Incluso.</span>
+            <span>Se você quer algo que dure, fala comigo.</span>
           </div>
         </div>
       </div>

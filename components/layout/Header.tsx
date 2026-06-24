@@ -5,24 +5,17 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X, ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import Badge from "@/components/ui/badge"
 import MobileMenu from "./MobileMenu"
 import { siteConfig } from "@/config/site"
+import ThemeToggle from "./ThemeToggle"
 
 export default function Header() {
   const pathname = usePathname()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
-  // Add background shadow on scroll
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setScrolled(true)
-      } else {
-        setScrolled(false)
-      }
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -30,14 +23,11 @@ export default function Header() {
   const navLinks = [
     { name: "Início", path: "/" },
     { name: "Projetos", path: "/projects" },
-    { name: "Market", path: "/market" },
     { name: "Contato", path: "/contact" }
   ]
 
   const isActive = (path: string) => {
-    if (path === "/") {
-      return pathname === "/"
-    }
+    if (path === "/") return pathname === "/"
     return pathname.startsWith(path)
   }
 
@@ -46,28 +36,27 @@ export default function Header() {
       <header
         className={`sticky top-0 z-50 w-full transition-all duration-300 ${
           scrolled
-            ? "border-b border-white/5 bg-background/80 backdrop-blur-md py-4"
+            ? "border-b border-border bg-background/90 backdrop-blur-md py-4"
             : "bg-transparent py-6"
         }`}
       >
         <div className="container mx-auto flex items-center justify-between px-6">
-          {/* Logo & Status Badge */}
+          {/* Logo */}
           <div className="flex items-center gap-4">
             <Link
               href="/"
-              className="font-display text-xl font-bold tracking-tight text-white transition-colors hover:text-neon-lime"
+              className="font-display text-2xl font-bold tracking-[-0.04em] text-foreground transition-colors hover:text-primary italic"
             >
-              {siteConfig.name
-                .split(" ")
-                .map((n) => n[0].toLowerCase())
-                .join("")}
-              <span className="text-neon-lime">.</span>dev
+              BRUCE<span className="text-primary not-italic">.</span>
             </Link>
-            <div className="hidden sm:inline-flex">
-              <Badge variant={siteConfig.hero.available ? "neon" : "outline"} dot>
-                {siteConfig.hero.available ? siteConfig.hero.availabilityLabel : "Indisponível no momento"}
-              </Badge>
-            </div>
+
+            {/* Availability indicator */}
+            {siteConfig.hero.available && (
+              <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-muted-foreground">
+                <span className="h-[6px] w-[6px] rounded-full bg-destructive pulse-red-dot" />
+                <span>Disponível agora</span>
+              </div>
+            )}
           </div>
 
           {/* Desktop Navigation */}
@@ -76,35 +65,40 @@ export default function Header() {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`text-sm font-medium transition-colors hover:text-white ${
+                className={`group relative text-sm font-medium transition-colors hover:text-foreground ${
                   isActive(link.path)
-                    ? "text-neon-lime font-semibold"
+                    ? "text-primary"
                     : "text-muted-foreground"
                 }`}
               >
                 {link.name}
+                {/* Animated underline */}
+                <span className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+                  isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"
+                }`} />
               </Link>
             ))}
           </nav>
 
-          {/* Action Button & Mobile Menu Toggle */}
+          {/* CTA & Mobile Toggle */}
           <div className="flex items-center gap-4">
+            <ThemeToggle />
+
             <div className="hidden md:inline-flex">
               <Link href="/contact">
                 <Button
                   size="sm"
-                  className="bg-neon-lime text-black font-semibold hover:bg-neon-lime/90 hover:shadow-[0_0_15px_rgba(191,255,0,0.4)] transition-all duration-350"
+                  className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all duration-300 rounded"
                 >
                   {siteConfig.hero.ctaPrimary}
-                  <ArrowRight className="ml-1.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-1.5 h-4 w-4" />
                 </Button>
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center justify-center p-2 rounded-lg text-muted-foreground hover:text-white hover:bg-white/5 md:hidden transition-colors"
+              className="flex items-center justify-center p-2 rounded text-muted-foreground hover:text-foreground hover:bg-card md:hidden transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -113,7 +107,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
       <MobileMenu
         isOpen={mobileMenuOpen}
         onClose={() => setMobileMenuOpen(false)}

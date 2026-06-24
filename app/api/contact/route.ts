@@ -4,7 +4,7 @@ import { Resend } from "resend"
 import { siteConfig } from "@/config/site"
 
 const contactSchema = z.object({
-  nome: z.string().min(3),
+  nome: z.string().min(1).optional().nullable(),
   email: z.string().email(),
   empresa: z.string().optional().nullable(),
   orcamento: z.string().min(1),
@@ -47,10 +47,10 @@ export async function POST(request: Request) {
     const { data, error } = await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>",
       to: siteConfig.contact.email,
-      subject: `💼 Nova Proposta - ${nome}`,
+      subject: `💼 Nova Proposta - ${nome || "—"}`,
       html: `
         <h2>Nova oportunidade recebida do portfólio</h2>
-        <p><strong>Nome:</strong> ${nome}</p>
+        <p><strong>Nome:</strong> ${nome || "—"}</p>
         <p><strong>E-mail:</strong> ${email}</p>
         <p><strong>Empresa:</strong> ${empresa || "Não informada"}</p>
         <p><strong>Orçamento:</strong> ${orcamento}</p>
