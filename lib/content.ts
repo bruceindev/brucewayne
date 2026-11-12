@@ -184,8 +184,8 @@ export const experiences: Experience[] = [
     short: "SENAC",
     company: "Centro Universitário SENAC",
     role: "Análise e Desenvolvimento de Sistemas",
-    period: "2024 — hoje",
-    kicker: "Graduação + publicação acadêmica",
+    period: "2024 — ago 2026",
+    kicker: "Formado em ADS + publicação acadêmica",
     bullets: [
       "Artigo publicado: “AWS Lambda e Serverless Architecture: Padrões de Design em Sistemas Distribuídos” (2026).",
       "AWS Academy Graduate — Cloud Foundations.",
@@ -207,13 +207,14 @@ export interface Goal {
 /* EDITAR: as metas "doing"/"next" são sugestões. Troque pelas suas reais. */
 export const goals: Goal[] = [
   { title: "Lançar meu próprio SaaS", note: "MONK — gestão no piloto automático para estúdios", status: "done", when: "2026" },
+  { title: "Me formar em ADS no SENAC", note: "Formado em agosto de 2026", status: "done", when: "2026" },
+  { title: "Entrar numa multinacional", note: "Hoje trabalho numa das Big Four", status: "done", when: "2026" },
   { title: "Publicar um artigo acadêmico", note: "AWS Lambda & Serverless — SENAC", status: "done", when: "2026" },
   { title: "Relançar o MONK", note: "Versão nova, mais estável e com IA no WhatsApp", status: "doing", when: "2026" },
-  { title: "Concluir ADS no SENAC", note: "Graduação em andamento", status: "doing", when: "2026" },
+  { title: "Contribuir com open-source e comunidades", note: "Projetos inovadores, inclusive no Discord — de graça, por bons motivos", status: "doing", when: "sempre" },
   { title: "Inglês B1 → C1", note: "Hoje: EF SET B1. Meta: conversar sem legenda mental", status: "doing", when: "2027" },
-  { title: "100 estúdios pagantes no MONK", note: "Crescer com clientes reais, não com investidor", status: "next", when: "2027" },
+  { title: "50 estúdios pagantes no MONK", note: "Crescer com clientes reais, não com investidor", status: "next", when: "2027" },
   { title: "AWS Solutions Architect – Associate", note: "Próximo passo depois do Cloud Foundations", status: "next", when: "2027" },
-  { title: "Trabalhar com um time internacional", note: "Remoto, produto com escala global", status: "next", when: "2027" },
 ]
 
 export const faqs = [

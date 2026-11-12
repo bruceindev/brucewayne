@@ -104,7 +104,7 @@ export default function Goals() {
                   >
                     {statusLabel[g.status]}
                   </span>
-                  <span className="w-10 text-right font-mono text-[11px] text-ink/40">{g.when}</span>
+                  <span className="w-12 shrink-0 text-right font-mono text-[11px] text-ink/40">{g.when}</span>
                 </motion.li>
               ))}
             </ul>

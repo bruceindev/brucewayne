@@ -3,8 +3,8 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import { AnimatePresence, motion } from "framer-motion"
-import { ArrowUpRight, Plus } from "lucide-react"
-import { siteConfig } from "@/config/site"
+import { ArrowUpRight, Github, Plus } from "lucide-react"
+import { siteConfig, getWhatsAppUrl } from "@/config/site"
 import { faqs } from "@/lib/content"
 import { ease, H2, Kicker, Reveal, Serif } from "./ui"
 
@@ -55,6 +55,40 @@ export default function Offer() {
             )
           })}
         </div>
+
+        {/* projetos sem cobrar */}
+        <Reveal className="mt-3">
+          <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] bg-[#141312] p-6 text-white md:flex-row md:items-center md:p-8">
+            <div className="max-w-2xl">
+              <p className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-white/40">Sem cobrar nada</p>
+              <p className="mt-3 text-[24px] font-medium leading-tight tracking-[-0.03em] md:text-[30px]">
+                Projeto bom nem sempre tem <span className="font-serif font-normal italic">orçamento.</span>
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-white/55">
+                Topo open-source, iniciativas de comunidade e projetos inovadores em servidores do Discord. Se a ideia é boa e ajuda gente, me chama.
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-wrap gap-2">
+              <a
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-1.5 rounded-xl bg-white px-4 py-2.5 text-sm font-medium text-ink transition-transform active:scale-95"
+              >
+                Bora construir junto
+                <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </a>
+              <a
+                href={siteConfig.social.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-white/15 px-4 py-2.5 text-sm text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+              >
+                <Github className="h-4 w-4" /> GitHub
+              </a>
+            </div>
+          </div>
+        </Reveal>
 
         {/* FAQ */}
         <div className="mx-auto mt-16 max-w-3xl">

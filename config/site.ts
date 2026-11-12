@@ -43,7 +43,7 @@ export const siteConfig = {
     landingPage: {
       title: "Landing Page de Alta Conversão",
       delivery: "5 dias úteis",
-      startingPrice: "R$ 500",
+      startingPrice: "R$ 650",
     },
     mvp: {
       title: "MVP Funcional",

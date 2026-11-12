@@ -74,11 +74,10 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col justify-between gap-2 border-t border-black/[0.06] py-5 font-mono text-[10.5px] text-ink/40 sm:flex-row">
           <span>© {new Date().getFullYear()} Ryan Jesus. Feito à mão, com café e MF DOOM no fone.</span>
-          <span>Next.js · Three.js · zero templates</span>
         </div>
 
         {/* wordmark gigante, cortado na base */}
-        <div aria-hidden className="pointer-events-none -mb-[0.2em] select-none text-center font-serif italic leading-[0.8] text-ink" style={{ fontSize: "clamp(120px, 27vw, 420px)" }}>
+        <div aria-hidden className="pointer-events-none select-none pb-[0.08em] pt-[0.04em] text-center font-serif italic leading-[0.95] text-ink" style={{ fontSize: "clamp(120px, 27vw, 420px)" }}>
           bruce.
         </div>
       </div>
