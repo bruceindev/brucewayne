@@ -1,135 +1,132 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Menu, X, ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import MobileMenu from "./MobileMenu"
-import { siteConfig } from "@/config/site"
-import ThemeToggle from "./ThemeToggle"
+import { Menu, X, ArrowUpRight } from "lucide-react"
+import { AnimatePresence, motion } from "framer-motion"
+import { siteConfig, getWhatsAppUrl } from "@/config/site"
+
+const navLinks = [
+  { name: "Trabalho", href: "/#trabalho" },
+  { name: "Habilidades", href: "/#habilidades" },
+  { name: "Trajetória", href: "/#trajetoria" },
+  { name: "Metas", href: "/#metas" },
+  { name: "Projetos", href: "/projects" },
+]
 
 export default function Header() {
-  const pathname = usePathname()
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  const navLinks = [
-    { name: "Início", path: "/" },
-    { name: "Projetos", path: "/projects" },
-    { name: "Contato", path: "/contact" }
-  ]
-
-  const isActive = (path: string) => {
-    if (path === "/") return pathname === "/"
-    return pathname.startsWith(path)
-  }
+  const pill = `flex items-center rounded-2xl border border-black/[0.06] bg-paper/80 backdrop-blur-xl transition-shadow duration-300 ${
+    scrolled ? "shadow-[0_8px_30px_rgba(40,30,10,0.08)]" : "shadow-none"
+  }`
 
   return (
-    <>
-      <header
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-          scrolled
-            ? "border-b border-border bg-background/90 backdrop-blur-md py-4"
-            : "bg-transparent py-6"
-        }`}
-      >
-        <div className="container mx-auto flex items-center justify-between px-6">
-          {/* Logo */}
-          <div className="flex items-center gap-4">
-            <div className="flex flex-col justify-start">
+    <header className="pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-6 md:pt-4">
+      <div className="mx-auto flex max-w-[1400px] items-start justify-between gap-3">
+        {/* esquerda: logo + links */}
+        <div className={`${pill} pointer-events-auto gap-1 py-1.5 pl-4 pr-1.5`}>
+          <Link href="/" className="mr-3 flex items-baseline gap-1.5" aria-label="Início">
+            <span className="font-serif text-[22px] italic leading-none tracking-tight text-ink">Bruce</span>
+            <span className="hidden font-mono text-[9px] uppercase tracking-[0.18em] text-ink/40 sm:inline">Ryan Jesus</span>
+          </Link>
+          <nav className="hidden items-center lg:flex" aria-label="Principal">
+            {navLinks.map((l) => (
               <Link
-                href="/"
-                className="font-display text-2xl font-bold tracking-[-0.04em] text-foreground transition-colors hover:text-primary italic leading-none"
+                key={l.href}
+                href={l.href}
+                className="rounded-lg px-2.5 py-1.5 text-[13px] text-ink/60 transition-colors hover:bg-black/[0.04] hover:text-ink"
               >
-                BRUCE<span className="text-primary not-italic">.</span>
-              </Link>
-              <span className="font-mono text-[8px] text-muted-foreground uppercase tracking-widest leading-none mt-1">
-                Ryan Jesus
-              </span>
-            </div>
-
-            {/* Availability indicator */}
-            {siteConfig.hero.available && (
-              <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-muted-foreground">
-                <span className="h-[6px] w-[6px] rounded-full bg-destructive pulse-red-dot" />
-                <span>Disponível agora</span>
-              </div>
-            )}
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                href={link.path}
-                className={`group relative text-sm font-medium transition-colors hover:text-foreground ${
-                  isActive(link.path)
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {link.name}
-                {/* Animated underline */}
-                <span className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
-                  isActive(link.path) ? "w-full" : "w-0 group-hover:w-full"
-                }`} />
+                {l.name}
               </Link>
             ))}
+          </nav>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="rounded-lg p-1.5 text-ink/70 hover:bg-black/[0.04] lg:hidden"
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
+        </div>
 
-            {/* Download CV */}
+        {/* direita: status + CV + CTA */}
+        <div className={`${pill} pointer-events-auto gap-1 p-1.5`}>
+          {siteConfig.hero.available && (
+            <span className="hidden items-center gap-1.5 px-2 text-[12px] text-ink/55 xl:flex">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              </span>
+              Agenda aberta pra novos projetos
+            </span>
+          )}
+          <a
+            href="/Ryan_Jesus_Curriculo.pdf"
+            download="Ryan_Jesus_Curriculo.pdf"
+            className="hidden rounded-lg px-2.5 py-1.5 text-[13px] text-ink/70 transition-colors hover:bg-black/[0.04] hover:text-ink sm:block"
+          >
+            Currículo
+          </a>
+          <a
+            href={getWhatsAppUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-1 rounded-xl bg-ink px-3 py-1.5 text-[13px] font-medium text-paper transition-transform active:scale-95"
+          >
+            {siteConfig.hero.ctaPrimary}
+            <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </a>
+        </div>
+      </div>
+
+      {/* menu mobile */}
+      <AnimatePresence>
+        {open && (
+          <motion.nav
+            initial={{ opacity: 0, y: -8, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -8, scale: 0.98 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="pointer-events-auto mx-auto mt-2 max-w-[1400px] origin-top rounded-2xl border border-black/[0.06] bg-paper/95 p-2 shadow-[0_12px_40px_rgba(40,30,10,0.12)] backdrop-blur-xl lg:hidden"
+            aria-label="Menu móvel"
+          >
+            {navLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="block rounded-xl px-3 py-3 text-[17px] tracking-tight text-ink hover:bg-black/[0.04]"
+              >
+                {l.name}
+              </Link>
+            ))}
             <a
               href="/Ryan_Jesus_Curriculo.pdf"
               download="Ryan_Jesus_Curriculo.pdf"
-              className="group relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
-              title="Baixar Currículo (PDF)"
+              className="block rounded-xl px-3 py-3 text-[17px] tracking-tight text-ink hover:bg-black/[0.04]"
             >
-              <span>Currículo</span>
-              <span className="text-[10px] text-primary">↓</span>
-              <span className="absolute -bottom-1 left-0 h-px bg-primary w-0 group-hover:w-full transition-all duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]" />
+              Baixar currículo (PDF)
             </a>
-          </nav>
-
-          {/* CTA & Mobile Toggle */}
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-
-            <div className="hidden md:inline-flex">
-              <Link href="/contact">
-                <Button
-                  size="sm"
-                  className="bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all duration-300 rounded"
-                >
-                  {siteConfig.hero.ctaPrimary}
-                  <ArrowRight className="ml-1.5 h-4 w-4" />
-                </Button>
-              </Link>
-            </div>
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="flex items-center justify-center p-2 rounded text-muted-foreground hover:text-foreground hover:bg-card md:hidden transition-colors"
-              aria-label="Toggle menu"
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className="block rounded-xl px-3 py-3 text-[17px] tracking-tight text-ink hover:bg-black/[0.04]"
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
-        </div>
-      </header>
-
-      <MobileMenu
-        isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-        links={navLinks}
-        isActive={isActive}
-      />
-    </>
+              Contato
+            </Link>
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </header>
   )
 }

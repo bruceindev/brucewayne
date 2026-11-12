@@ -1,16 +1,16 @@
 export const siteConfig = {
   // --- Informações Pessoais ---
   name: "Bruce",
-  role: "Full Stack. Full Culture.",
+  role: "Product Engineer · Full Stack",
   location: "São Paulo, SP",
 
   // --- Copy Principal ---
   hero: {
-    headline: "BRUCE.",
+    headline: "Sistemas que não quebram às 2h da manhã.",
     subheadline:
-      "Construo sistemas que não quebram às 2h da manhã. Desenvolvimento full-stack com gosto, estética e som de vinil.",
-    ctaPrimary: "Falar sobre seu projeto",
-    ctaSecondary: "Ver projetos",
+      "Sou Ryan “Bruce” Jesus, Product Engineer em São Paulo. Arquitetura event-driven, agentes de IA e interfaces que vendem — do domínio ao deploy.",
+    ctaPrimary: "Vamos conversar",
+    ctaSecondary: "Ver o trabalho",
     availabilityLabel: "Disponível para projetos",
     available: true, // mude para false quando estiver ocupado
   },
@@ -31,9 +31,9 @@ export const siteConfig = {
 
   // --- SEO & Metadata ---
   seo: {
-    title: "BRUCE. — Full Stack Developer & Creative Engineer",
+    title: "Bruce — Ryan Jesus · Product Engineer & Full Stack",
     description:
-      "The other side of full stack. Sistemas de alta performance construídos com gosto, estética e cultura analógica.",
+      "Sistemas que não quebram às 2h da manhã. Arquitetura event-driven, agentes de IA e front-ends que vendem. Product Engineer em São Paulo.",
     url: "https://ryanjesus.dev", // atualize quando tiver domínio
     ogImage: "/og-image.png",
   },

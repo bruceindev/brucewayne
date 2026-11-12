@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, Space_Grotesk, Fragment_Mono } from "next/font/google"
+import { Inter_Tight, Instrument_Serif, Fragment_Mono } from "next/font/google"
 import { Metadata } from "next"
 
 import "./globals.css"
@@ -7,25 +7,24 @@ import { cn } from "@/lib/utils"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import { siteConfig } from "@/config/site"
-import CustomCursor from "@/components/layout/CustomCursor"
 import PageTransition from "@/components/layout/PageTransition"
 import DoomTribute from "@/components/layout/DoomTribute"
 import SmoothScroll from "@/components/layout/SmoothScroll"
 
-// Configure Serif Display Font (Cormorant Garamond)
-const cormorant = Cormorant_Garamond({
+// Grotesk apertada (headlines + corpo) — pegada Butter
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 })
 
-// Configure Sans Body Font (Space Grotesk)
-const spaceGrotesk = Space_Grotesk({
+// Serifa itálica para o toque "cozy"
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-serif",
+  weight: ["400"],
+  style: ["normal", "italic"],
   display: "swap",
 })
 
@@ -97,29 +96,30 @@ export default function RootLayout({
       lang="pt-BR"
       suppressHydrationWarning
       className={cn(
-        "antialiased scroll-smooth dark",
-        cormorant.variable,
-        spaceGrotesk.variable,
+        "antialiased",
+        interTight.variable,
+        instrumentSerif.variable,
         fragmentMono.variable
       )}
-      style={{ colorScheme: "dark" }}
+      style={{ colorScheme: "light" }}
     >
-      <body className="flex min-h-screen flex-col bg-background text-foreground font-sans selection:bg-primary selection:text-black">
+      <body className="flex min-h-screen flex-col bg-background text-foreground font-sans selection:bg-[#3B82F6] selection:text-white">
         {/* Analog noise grain texture */}
         <div className="grain-overlay" />
         
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
+          forcedTheme="light"
           enableSystem={false}
           disableTransitionOnChange
         >
           {/* Lenis Smooth Scroll */}
           <SmoothScroll />
-          {/* Custom smoothing desktop cursor */}
-          <CustomCursor />
           {/* Hidden tribute easter egg modal */}
-          <DoomTribute />
+          <div className="dark">
+            <DoomTribute />
+          </div>
           
           <Header />
           <main className="flex-grow relative z-10">

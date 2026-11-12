@@ -1,125 +1,85 @@
 import React from "react"
 import Link from "next/link"
-import { Github, Linkedin, Mail, MessageSquare } from "lucide-react"
 import { siteConfig, getWhatsAppUrl } from "@/config/site"
 
+const cols = [
+  {
+    title: "Navegar",
+    links: [
+      { label: "Trabalho", href: "/#trabalho" },
+      { label: "Habilidades", href: "/#habilidades" },
+      { label: "Trajetória", href: "/#trajetoria" },
+      { label: "Metas", href: "/#metas" },
+      { label: "Todos os projetos", href: "/projects" },
+    ],
+  },
+  {
+    title: "Conversar",
+    links: [
+      { label: "WhatsApp", href: getWhatsAppUrl(), ext: true },
+      { label: "E-mail", href: `mailto:${siteConfig.contact.email}`, ext: true },
+      { label: "Formulário", href: "/contact" },
+    ],
+  },
+  {
+    title: "Redes",
+    links: [
+      { label: "GitHub", href: siteConfig.social.github, ext: true },
+      { label: "LinkedIn", href: siteConfig.social.linkedin, ext: true },
+    ],
+  },
+  {
+    title: "Recursos",
+    links: [{ label: "Currículo (PDF)", href: "/Ryan_Jesus_Curriculo.pdf", ext: true }],
+  },
+]
+
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
-
-  const socialLinks = [
-    {
-      name: "GitHub",
-      href: siteConfig.social.github,
-      icon: <Github className="h-4 w-4" />
-    },
-    {
-      name: "LinkedIn",
-      href: siteConfig.social.linkedin,
-      icon: <Linkedin className="h-4 w-4" />
-    },
-    {
-      name: "WhatsApp",
-      href: getWhatsAppUrl(),
-      icon: <MessageSquare className="h-4 w-4" />
-    },
-    {
-      name: "E-mail",
-      href: `mailto:${siteConfig.contact.email}`,
-      icon: <Mail className="h-4 w-4" />
-    }
-  ]
-
   return (
-    <footer className="w-full border-t border-border bg-background py-12 text-sm">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4 lg:gap-12">
-          {/* Logo & Value Prop */}
-          <div className="md:col-span-2 space-y-4">
-            <div className="flex flex-col justify-start">
-              <Link
-                href="/"
-                className="font-display text-2xl font-bold tracking-[-0.04em] text-foreground transition-colors hover:text-primary italic leading-none"
-              >
-                BRUCE<span className="text-primary not-italic">.</span>
-              </Link>
-              <span className="font-mono text-[8px] text-muted-foreground uppercase tracking-widest leading-none mt-1">
-                Ryan Jesus
-              </span>
-            </div>
-            <p className="max-w-xs text-muted-foreground leading-relaxed text-sm">
-              Sistemas de alta performance construídos com gosto, estética e cultura analógica. Código que dura.
+    <footer className="relative z-10 mt-12 overflow-hidden px-3 pb-3 md:px-6 md:pb-6">
+      <div className="mx-auto max-w-[1400px] rounded-[28px] bg-paper px-6 pt-12 md:px-12 md:pt-16">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-6">
+          <div className="col-span-2 space-y-3">
+            <p className="font-serif text-3xl italic leading-none text-ink">Bruce</p>
+            <p className="max-w-xs text-sm leading-relaxed text-ink/55">
+              Ryan Jesus — Product Engineer em {siteConfig.location}. Sistemas que não quebram às 2h da manhã.
             </p>
-            <div className="flex items-center gap-2.5 text-xs font-mono">
-              {siteConfig.hero.available ? (
-                <>
-                  <span className="h-[6px] w-[6px] rounded-full bg-destructive pulse-red-dot" />
-                  <span className="text-foreground">{siteConfig.hero.availabilityLabel}</span>
-                </>
-              ) : (
-                <span className="text-muted-foreground">Indisponível no momento</span>
-              )}
-              <span className="text-muted-foreground">• {siteConfig.contact.responseTime}</span>
-            </div>
+            <p className="font-mono text-[10.5px] text-ink/40">
+              psst: digite <kbd className="rounded border border-black/10 bg-cream px-1">d o o m</kbd> em qualquer página.
+            </p>
           </div>
-
-          {/* Nav Links */}
-          <div className="space-y-4">
-            <h4 className="font-mono text-xs text-muted-foreground uppercase tracking-[0.12em]">Navegação</h4>
-            <ul className="space-y-2 text-muted-foreground">
-              <li>
-                <Link href="/" className="hover:text-foreground transition-colors">
-                  Início
-                </Link>
-              </li>
-              <li>
-                <Link href="/projects" className="hover:text-foreground transition-colors">
-                  Projetos
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-foreground transition-colors">
-                  Contato
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Socials */}
-          <div className="space-y-4">
-            <h4 className="font-mono text-xs text-muted-foreground uppercase tracking-[0.12em]">Canais / Redes</h4>
-            <div className="flex flex-col gap-2">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-2.5 border border-border bg-card/10 hover:bg-primary/5 hover:border-primary/50 text-muted-foreground hover:text-foreground transition-all duration-300 font-mono text-xs group"
-                  title={social.name}
-                >
-                  <span className="flex items-center gap-2">
-                    {social.icon}
-                    <span>{social.name}</span>
-                  </span>
-                  <span className="text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity">↗</span>
-                </a>
-              ))}
+          {cols.map((c) => (
+            <div key={c.title} className="space-y-3">
+              <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink/40">{c.title}</p>
+              <ul className="space-y-1.5">
+                {c.links.map((l) =>
+                  "ext" in l && l.ext ? (
+                    <li key={l.label}>
+                      <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-sm text-ink/75 transition-colors hover:text-ink">
+                        {l.label}
+                      </a>
+                    </li>
+                  ) : (
+                    <li key={l.label}>
+                      <Link href={l.href} className="text-sm text-ink/75 transition-colors hover:text-ink">
+                        {l.label}
+                      </Link>
+                    </li>
+                  )
+                )}
+              </ul>
             </div>
-            <div className="text-xs text-muted-foreground font-mono">
-              <p>Seg — Sex, 09:00 - 18:00</p>
-            </div>
-          </div>
+          ))}
         </div>
 
-        <div className="mt-12 w-full h-px bg-border" />
+        <div className="mt-12 flex flex-col justify-between gap-2 border-t border-black/[0.06] py-5 font-mono text-[10.5px] text-ink/40 sm:flex-row">
+          <span>© {new Date().getFullYear()} Ryan Jesus. Feito à mão, com café e MF DOOM no fone.</span>
+          <span>Next.js · Three.js · zero templates</span>
+        </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row text-xs text-muted-foreground font-mono">
-          <p>
-            © {currentYear} BRUCE. Todos os direitos reservados.
-          </p>
-          <div className="flex items-center gap-6">
-            <span>Se você quer algo que dure, fala comigo.</span>
-          </div>
+        {/* wordmark gigante, cortado na base */}
+        <div aria-hidden className="pointer-events-none -mb-[0.2em] select-none text-center font-serif italic leading-[0.8] text-ink" style={{ fontSize: "clamp(120px, 27vw, 420px)" }}>
+          bruce.
         </div>
       </div>
     </footer>
