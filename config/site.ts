@@ -1,14 +1,14 @@
 export const siteConfig = {
   // --- Informações Pessoais ---
   name: "Bruce",
-  role: "Product Engineer · Full Stack",
+  role: "Automação, IA & Dados",
   location: "São Paulo, SP",
 
   // --- Copy Principal ---
   hero: {
     headline: "Sistemas que não quebram às 2h da manhã.",
     subheadline:
-      "Sou Ryan “Bruce” Jesus, Product Engineer em São Paulo. Arquitetura event-driven, agentes de IA e interfaces que vendem — do domínio ao deploy.",
+      "Sou Ryan “Bruce” Jesus. Construo automações, agentes de IA e produtos de dados — como o MONK, que coloca clínicas e estúdios no piloto automático.",
     ctaPrimary: "Vamos conversar",
     ctaSecondary: "Ver o trabalho",
     availabilityLabel: "Disponível para projetos",
@@ -31,9 +31,9 @@ export const siteConfig = {
 
   // --- SEO & Metadata ---
   seo: {
-    title: "Bruce — Ryan Jesus · Product Engineer & Full Stack",
+    title: "Bruce — Ryan Jesus · Automação, IA & Dados",
     description:
-      "Sistemas que não quebram às 2h da manhã. Arquitetura event-driven, agentes de IA e front-ends que vendem. Product Engineer em São Paulo.",
+      "Automações que trabalham enquanto você dorme. Agentes de IA, dados e produtos como o MONK, o SaaS que coloca clínicas e estúdios no piloto automático.",
     url: "https://ryanjesus.dev", // atualize quando tiver domínio
     ogImage: "/og-image.png",
   },
@@ -51,12 +51,12 @@ export const siteConfig = {
       startingPrice: "R$ 2.000",
     },
     system: {
-      title: "Sistema Interno",
+      title: "Automação sob medida",
       delivery: "3–4 semanas",
       startingPrice: "R$ 3.500",
     },
     aiIntegration: {
-      title: "IA Integrada ao Produto",
+      title: "Agente de IA no seu negócio",
       delivery: "Sob consulta",
       startingPrice: "Sob consulta",
     },

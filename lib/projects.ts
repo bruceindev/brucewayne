@@ -16,9 +16,44 @@ export interface Project {
     description: string
   }[]
   estimatedResults: string[]
+  resultsLabel?: string
 }
 
 export const projects: Project[] = [
+  {
+    slug: "monk",
+    title: "MONK",
+    subtitle: "Gestão no piloto automático para clínicas e estúdios",
+    type: "Plataforma SaaS · Automação",
+    summary: "Meu projeto principal: SaaS que cuida da agenda, das mensagens no WhatsApp, dos pagamentos por Pix e da fidelidade das clientes, enquanto a dona do estúdio atende.",
+    image: "/projects/monk/hoje.jpg",
+    images: ["/projects/monk/hoje.jpg", "/projects/monk/agenda.jpg", "/projects/monk/mensagens.jpg", "/projects/monk/portal.jpg"],
+    stack: ["Next.js", "Express", "Prisma", "PostgreSQL", "WhatsApp API", "Mercado Pago", "LLMs", "node-cron"],
+    timeline: "desde mai 2026",
+    role: "Fundador & engenheiro",
+    problem: "Donas de estúdio (tranças, estética, pilates) passam o dia confirmando horário no WhatsApp, cobrando sinal e lembrando cliente sumida. Cada falta é dinheiro perdido, e o tempo gasto em mensagem é tempo que não vira atendimento.",
+    solution: "Uma plataforma que automatiza a operação: a cliente agenda sozinha numa página pública, paga o sinal por Pix e recebe confirmação, lembrete e pós-atendimento no WhatsApp. A dona vê o dia, o faturamento e as faltas num painel só.",
+    technicalDecisions: [
+      {
+        title: "Régua de mensagens com agendador e limites por plano",
+        description: "Confirmação, lembrete D-1, pós-atendimento, reativação e cobrança saem sozinhos pelo WhatsApp. Quando o estúdio bate o limite do plano, a mensagem espera o mês virar em vez de ser descartada; mensagem transacional nunca espera.",
+      },
+      {
+        title: "Pagamentos que conferem tudo",
+        description: "Pix e assinatura recorrente pelo Mercado Pago, com webhooks validados por assinatura e por valor antes de confirmar qualquer reserva ou plano.",
+      },
+      {
+        title: "Promessas provadas por teste",
+        description: "Cada limite e funcionalidade dos planos (Essencial, Profissional e Escala) tem um teste que prova que nada é bloqueado dentro da promessa e que o bloqueio acontece logo depois dela.",
+      },
+    ],
+    estimatedResults: [
+      "Produto completo: agenda, portal público, CRM, fidelidade, pacotes, lista de espera e agente de IA no WhatsApp.",
+      "600+ testes automatizados entre servidor e site.",
+      "Planos de R$ 49,90 a R$ 199,90 por mês, com teste grátis e cobrança recorrente.",
+    ],
+    resultsLabel: "O projeto em números",
+  },
   {
     slug: "conexa",
     title: "Conexa",

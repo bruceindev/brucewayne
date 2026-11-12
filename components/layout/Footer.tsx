@@ -42,7 +42,7 @@ export default function Footer() {
           <div className="col-span-2 space-y-3">
             <p className="font-serif text-3xl italic leading-none text-ink">Bruce</p>
             <p className="max-w-xs text-sm leading-relaxed text-ink/55">
-              Ryan Jesus — Product Engineer em {siteConfig.location}. Sistemas que não quebram às 2h da manhã.
+              Ryan Jesus — automação, IA e dados, em {siteConfig.location}. Criador do MONK.
             </p>
             <p className="font-mono text-[10.5px] text-ink/40">
               psst: digite <kbd className="rounded border border-black/10 bg-cream px-1">d o o m</kbd> em qualquer página.

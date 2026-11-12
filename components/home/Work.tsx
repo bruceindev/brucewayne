@@ -45,6 +45,12 @@ export default function Work() {
                   <span className="absolute left-3 top-3 rounded-full bg-paper/90 px-2.5 py-1 font-mono text-[10px] text-ink/70 backdrop-blur">
                     {String(i + 1).padStart(2, "0")} · {p.type}
                   </span>
+                  {i === 0 && (
+                    <span className="absolute bottom-3 left-3 flex items-center gap-1.5 rounded-full bg-ink px-2.5 py-1 font-mono text-[10px] text-paper">
+                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                      projeto principal
+                    </span>
+                  )}
                   <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-paper/90 text-ink opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
                     <ArrowUpRight className="h-4 w-4" />
                   </span>

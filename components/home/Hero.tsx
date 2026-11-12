@@ -3,7 +3,7 @@
 import React, { useRef, useState } from "react"
 import { motion, useMotionValueEvent, useScroll } from "framer-motion"
 import { ArrowDown, ArrowUpRight } from "lucide-react"
-import Pasture from "@/components/pasture/Pasture"
+import Monastery from "@/components/monastery/Monastery"
 import { siteConfig, getWhatsAppUrl } from "@/config/site"
 import { ease, Serif } from "./ui"
 
@@ -24,16 +24,16 @@ export default function Hero() {
         <motion.div variants={line} initial="hidden" animate="show" custom={0} className="mb-6 flex justify-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-black/[0.06] bg-paper/70 px-3 py-1 text-[12.5px] text-ink/65 backdrop-blur">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            Product Engineer na Conexa · {siteConfig.location}
+            Criador do MONK · {siteConfig.location}
           </span>
         </motion.div>
 
         <h1 className="font-medium tracking-[-0.05em] text-ink" style={{ fontSize: "clamp(42px, 7vw, 104px)", lineHeight: 0.94 }}>
           <motion.span variants={line} initial="hidden" animate="show" custom={1} className="block">
-            Sistemas que não quebram
+            Automações que trabalham
           </motion.span>
           <motion.span variants={line} initial="hidden" animate="show" custom={2} className="block">
-            às <Serif>2h da manhã.</Serif>
+            <Serif>enquanto você dorme.</Serif>
           </motion.span>
         </h1>
 
@@ -74,11 +74,11 @@ export default function Hero() {
         transition={{ duration: 1.4, delay: 0.5, ease }}
         className="relative mx-auto mt-6 h-[600px] sm:h-[clamp(420px,80vh,880px)] max-w-[1600px]"
       >
-        <Pasture scrollProgress={progress} />
+        <Monastery scrollProgress={progress} />
       </motion.div>
 
       <p className="mx-auto -mt-2 max-w-md px-5 text-center font-mono text-[11px] leading-relaxed text-ink/45">
-        Nove microsserviços pastando em produção. Derrube um. Eu espero.
+        Oito automações trabalhando enquanto você lê isso. Derrube uma. Eu espero.
       </p>
     </section>
   )

@@ -149,7 +149,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
             {/* Impact */}
             <div className="border border-primary/20 bg-card p-6 space-y-6">
               <h3 className="font-display text-lg font-medium italic text-foreground tracking-tight">
-                Resultados Estimados
+                {project.resultsLabel ?? "Resultados Estimados"}
               </h3>
               <ul className="space-y-4">
                 {project.estimatedResults.map((result, idx) => (

@@ -46,7 +46,7 @@ function Bars() {
 }
 
 function Pipeline() {
-  const nodes = ["API", "Outbox", "SQS", "Worker", "Ledger"]
+  const nodes = ["Agenda", "Régua", "IA", "WhatsApp", "Pix"]
   return (
     <div className="relative mt-8">
       <div className="absolute left-[6%] right-[6%] top-1/2 h-px -translate-y-1/2 bg-white/15" />
@@ -100,14 +100,14 @@ export default function Proof() {
             <Card dark className="h-full">
               <div className="flex items-start justify-between">
                 <p className="text-[22px] font-medium leading-tight tracking-[-0.03em] md:text-[26px]">
-                  Event-driven,
+                  Um estúdio inteiro
                   <br />
-                  de ponta a ponta.
+                  no piloto automático.
                 </p>
-                <span className="font-mono text-[10.5px] text-white/40">Conexa</span>
+                <span className="font-mono text-[10.5px] text-white/40">MONK</span>
               </div>
               <p className="mt-2 max-w-sm text-sm text-white/55">
-                Motor financeiro com Outbox/Inbox: nenhum saque se perde, mesmo se um serviço cair no meio.
+                A cliente agenda, paga o sinal por Pix e recebe tudo no WhatsApp — sem a dona digitar nada. 600+ testes seguram isso de pé.
               </p>
               <Pipeline />
             </Card>

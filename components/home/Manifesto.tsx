@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react"
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion"
-import { Hourglass, Zap, Bot, MousePointerClick } from "lucide-react"
+import { Hourglass, Zap, Bot, BarChart3 } from "lucide-react"
 import { stack, type Tone } from "@/lib/content"
 import { Glossy, Kicker } from "./ui"
 
@@ -11,14 +11,14 @@ type Token = string | { tone: Tone; icon: React.ReactNode; label: string }
 const icon = "h-[55%] w-[55%] drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]"
 const text: Token[] = [
   "Eu pego",
-  { tone: "orange", icon: <Hourglass className={icon} strokeWidth={2.4} />, label: "processos lentos" },
-  "processos lentos e frágeis e transformo em",
-  { tone: "blue", icon: <Zap className={icon} strokeWidth={2.4} />, label: "event-driven" },
-  "sistemas event-driven,",
+  { tone: "orange", icon: <Hourglass className={icon} strokeWidth={2.4} />, label: "trabalho manual" },
+  "trabalho manual e repetitivo e transformo em",
+  { tone: "blue", icon: <Zap className={icon} strokeWidth={2.4} />, label: "automações" },
+  "automações que rodam sozinhas,",
   { tone: "lime", icon: <Bot className={icon} strokeWidth={2.4} />, label: "IA" },
-  "agentes de IA que resolvem sozinhos e",
-  { tone: "pink", icon: <MousePointerClick className={icon} strokeWidth={2.4} />, label: "interfaces" },
-  "interfaces que convertem. Do domínio ao deploy — sem acordar ninguém de madrugada.",
+  "agentes de IA que respondem por você e",
+  { tone: "pink", icon: <BarChart3 className={icon} strokeWidth={2.4} />, label: "dados" },
+  "dados que viram decisão. Da ideia ao produto que fatura — sem acordar ninguém de madrugada.",
 ]
 
 function Piece({ p, range, children }: { p: MotionValue<number>; range: [number, number]; children: React.ReactNode }) {
